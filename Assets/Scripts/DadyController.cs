@@ -21,13 +21,14 @@ public class DadyController : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        InputController.Instance.OnJump += Jump;
     }
 
     void Update()
     {
         _isJumpPressed = Input.GetButtonDown("Jump");
 
-        if (_isJumpPressed && _isGrounded)
+        if (_isJumpPressed)
         {
             Jump();
         }
@@ -43,7 +44,7 @@ public class DadyController : MonoBehaviour
 
     private void AnimateMove()
     {
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && _isGrounded)
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || InputController.Instance.Horizontal != 0) && _isGrounded)
         {
             _animator.SetBool("IsMoving",true);
         }
@@ -55,7 +56,7 @@ public class DadyController : MonoBehaviour
 
     private void Move()
     {
-        var x = Input.GetAxis("Horizontal");
+        var x = Config.Instance.IsKeyboard ? Input.GetAxis("Horizontal") : InputController.Instance.Horizontal;
 
         if (x < 0 && _isFacedToRight)
         {
@@ -66,7 +67,6 @@ public class DadyController : MonoBehaviour
         {
             Flip();
         }
-      
 
         var velocity = new Vector2(x * MoveSpeed, _rigidbody2D.velocity.y);
         _rigidbody2D.velocity = velocity;
@@ -74,6 +74,9 @@ public class DadyController : MonoBehaviour
 
     private void Jump()
     {
+        if(!_isGrounded)
+            return;
+
         _rigidbody2D.AddForce(Vector2.up*JumpSpeed, ForceMode2D.Impulse);
     }
 

@@ -1,11 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
 
-    public InputController Instance
+    public event Action OnJump;
+
+    public float Horizontal
+    {
+        get
+        {
+            return _horizontal;
+        }
+    }
+
+    public static InputController Instance
     {
         get
         {
@@ -16,18 +27,27 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private InputController _instance;
+    private float _horizontal;
 
+    private static InputController _instance;
 
-    // Start is called before the first frame update
-    void Start()
+    public void GoRight()
     {
-        
+        _horizontal = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoLeft()
     {
-        
+        _horizontal = -1;
+    }
+
+    public void Annulate()
+    {
+        _horizontal = 0;
+    }
+
+    public void Jump()
+    {
+        OnJump?.Invoke();
     }
 }
