@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\Config.cs" />
     <Compile Include="Assets\Scripts\DadyController.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
+    <Compile Include="Assets\Scripts\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\Platform.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

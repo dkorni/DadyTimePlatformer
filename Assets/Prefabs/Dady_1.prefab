@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1819584132011852247}
   - component: {fileID: 1819584132011852251}
   - component: {fileID: 1819584132011852246}
+  - component: {fileID: 4094192407570711101}
   m_Layer: 0
   m_Name: Dady_1
-  m_TagString: Untagged
+  m_TagString: Cleanup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +124,7 @@ MonoBehaviour:
   point: {fileID: 1819584133179258391}
   _checkGroundedRadius: 0.3
   _isGrounded: 0
+  _isJumpPressed: 0
 --- !u!58 &1819584132011852246
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +141,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!95 &4094192407570711101
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819584132011852244}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d421c5e8ea826c64b92df257ae316306, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1819584133179258388
 GameObject:
   m_ObjectHideFlags: 0
