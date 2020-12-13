@@ -6,6 +6,7 @@ public class DadyController : MonoBehaviour
 {
     public float MoveSpeed = 1;
     public float JumpSpeed = 1;
+    public float LaderSpeed = 1;
 
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;

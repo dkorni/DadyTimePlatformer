@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if(hit.transform.GetComponent<Platform>() && Vector2.Distance(new Vector2(0, hit.point.y), new Vector2(0, LeftDownChecker.position.y))>2.5)
+            if(hit.transform.GetComponent<Platform>() && Vector2.Distance(new Vector2(0, hit.point.y), new Vector2(0, LeftDownChecker.position.y))>2.2)
                 LaderLeft.SetActive(true);
         }
 
@@ -27,7 +27,7 @@ public class Platform : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.transform.GetComponent<Platform>() && Vector2.Distance(new Vector2(0, hit.point.y), new Vector2(0, RightDownChecker.position.y)) > 2.5)
+            if (hit.transform.GetComponent<Platform>() && Vector2.Distance(new Vector2(0, hit.point.y), new Vector2(0, RightDownChecker.position.y)) > 2.2)
                 LaderRight.SetActive(true);
         }
     }

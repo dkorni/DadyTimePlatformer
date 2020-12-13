@@ -160,7 +160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7707033560302849523}
   - component: {fileID: 3136492826251038506}
-  m_Layer: 0
+  - component: {fileID: 1564366101094996888}
+  - component: {fileID: 8696120237005511529}
+  m_Layer: 2
   m_Name: Lader_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2711705950255662500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.21, y: -1.437, z: 0}
+  m_LocalPosition: {x: 2.21, y: -1.437, z: -1}
   m_LocalScale: {x: 1, y: 1.2842891, z: 1}
   m_Children: []
   m_Father: {fileID: 2740420520294873831}
@@ -231,6 +233,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1564366101094996888
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2711705950255662500}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.93, y: 3.2}
+    newSize: {x: 2.93, y: 3.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.31, y: 3.2}
+  m_EdgeRadius: 0
+--- !u!114 &8696120237005511529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2711705950255662500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e04d40ef837ce40ba3375415513432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2740420520294873828
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2740420520294873828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2295895, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1942779202}
@@ -406,7 +446,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8052525806938841571}
   - component: {fileID: 4942567151578248401}
-  m_Layer: 0
+  - component: {fileID: 4965342930352344712}
+  - component: {fileID: 8126756998783250081}
+  m_Layer: 2
   m_Name: Lader_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9016861089907316920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9524059, y: -1.437, z: 0}
+  m_LocalPosition: {x: -1.9524059, y: -1.437, z: -1}
   m_LocalScale: {x: 1, y: 1.2842891, z: 1}
   m_Children: []
   m_Father: {fileID: 2740420520294873831}
@@ -477,3 +519,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &4965342930352344712
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016861089907316920}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.93, y: 3.2}
+    newSize: {x: 2.93, y: 3.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.31, y: 3.2}
+  m_EdgeRadius: 0
+--- !u!114 &8126756998783250081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016861089907316920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e04d40ef837ce40ba3375415513432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

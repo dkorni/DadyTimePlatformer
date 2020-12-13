@@ -116,7 +116,8 @@ public class LevelGenerator : MonoBehaviour
 
     private bool GenerateRight(int subLevelNum)
     {
-        var hit = Physics2D.Raycast(_lstPlatform.RightChecker.position, _lstPlatform.RightChecker.right, 100000);
+        int bound_mask = LayerMask.GetMask("Bound");
+        var hit = Physics2D.Raycast(_lstPlatform.RightChecker.position, _lstPlatform.RightChecker.right, 100000, bound_mask);
         Debug.DrawRay(_lstPlatform.RightChecker.position, _lstPlatform.RightChecker.right, Color.red, 3);
         var dist = Vector2.Distance(_lstPlatform.transform.position, hit.point);
 
@@ -160,7 +161,8 @@ public class LevelGenerator : MonoBehaviour
 
     private bool GenerateLeft(int subLevelNum)
     {
-        var hit = Physics2D.Raycast(_lstPlatform.LeftChecker.position, _lstPlatform.LeftChecker.right * -1, 100000);
+        int bound_mask = LayerMask.GetMask("Bound"); 
+        var hit = Physics2D.Raycast(_lstPlatform.LeftChecker.position, _lstPlatform.LeftChecker.right * -1, 100000, bound_mask);
         Debug.DrawRay(_lstPlatform.LeftChecker.position, _lstPlatform.LeftChecker.right*-1, Color.red, 3);
         var dist = Vector2.Distance(_lstPlatform.transform.position, hit.point);
 
