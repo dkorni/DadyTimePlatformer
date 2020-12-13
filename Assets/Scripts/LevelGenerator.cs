@@ -182,7 +182,7 @@ public class LevelGenerator : MonoBehaviour
             var ptf = Instantiate(PlatformPrefab, nextPos, Quaternion.identity).GetComponent<Platform>();
 
             // check availability and activate laders if need
-            ptf.ActivateLaders();
+           // ptf.ActivateLaders();
 
             Platforms.Add(ptf);
 
@@ -223,7 +223,7 @@ public class LevelGenerator : MonoBehaviour
             var ptf = Instantiate(PlatformPrefab, nextPos, Quaternion.identity).GetComponent<Platform>();
 
             // check availability and activate laders if need
-            ptf.ActivateLaders();
+            //  ptf.ActivateLaders();
 
             Platforms.Add(ptf);
 

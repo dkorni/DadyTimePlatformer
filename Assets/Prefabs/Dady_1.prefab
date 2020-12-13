@@ -120,8 +120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  JumpSpeed: 8
+  JumpSpeed: 9
   LaderSpeed: 2
+  TeathPrefab: {fileID: 1753882265946513227, guid: f83a20022538ce549983858c1b34d5c4,
+    type: 3}
+  Health: 100
   point: {fileID: 1819584133179258391}
   _checkGroundedRadius: 0.3
   _isGrounded: 0

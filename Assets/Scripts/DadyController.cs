@@ -11,6 +11,7 @@ public class DadyController : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+    private Collider2D _collider2D;
 
     [SerializeField] private float Health = 100;
     [SerializeField] private Transform point;
@@ -26,6 +27,7 @@ public class DadyController : MonoBehaviour
         _animator = GetComponent<Animator>();
         InputController.Instance.OnJump += Jump;
         UIManager.Instance.UpdateHealthText(Math.Max(0, Health));
+        _collider2D = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -94,10 +96,13 @@ public class DadyController : MonoBehaviour
             if (collider.gameObject != gameObject)
             {
                 isGrounded = true;
+                _collider2D.enabled = true;
+                return true;
             }
                
         }
 
+        _collider2D.enabled = false;
         return isGrounded;
     }
 

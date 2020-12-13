@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.3
-  Damage: 33.4
+  Damage: 0
   delay: 1
 --- !u!58 &3424484015651144811
 CircleCollider2D:

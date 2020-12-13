@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Camera.cs" />
     <Compile Include="Assets\Scripts\Config.cs" />
     <Compile Include="Assets\Scripts\DadyController.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Lader.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Platform.cs" />
+    <Compile Include="Assets\Scripts\Teath.cs" />
     <Compile Include="Assets\Scripts\TeathPickup.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Reference Include="UnityEngine">
