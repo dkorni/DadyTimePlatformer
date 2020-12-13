@@ -9,6 +9,8 @@ public class DadyController : MonoBehaviour
     public float JumpSpeed = 1;
     public float LaderSpeed = 1;
 
+    public GameObject TeathPrefab;
+
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private Collider2D _collider2D;
@@ -25,6 +27,7 @@ public class DadyController : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _collider2D = GetComponent<CapsuleCollider2D>();
         InputController.Instance.OnJump += Jump;
         UIManager.Instance.UpdateHealthText(Math.Max(0, Health));
         _collider2D = GetComponent<Collider2D>();
@@ -128,13 +131,9 @@ public class DadyController : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{
-    //    _isGrounded = true;
-    //}
 
-    //private void OnCollisionStay2D(Collision2D col)
-    //{
-    //    _isGrounded = true;
-    //}
+    public void AttackTeath()
+    {
+        var teath = Instantiate(TeathPrefab, _rigidbody2D.position, Quaternion.identity);
+    }
 }

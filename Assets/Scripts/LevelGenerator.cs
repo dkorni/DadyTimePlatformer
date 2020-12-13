@@ -103,10 +103,11 @@ public class LevelGenerator : MonoBehaviour
         int index = Random.Range(0, Platforms.Count);
 
         // spawn player on random platform
-        Instantiate(PlayerPrefab, (Vector2)Platforms[index].transform.position + new Vector2(0, 0.5f),
-            Quaternion.identity);
+       var c = Instantiate(PlayerPrefab, (Vector2)Platforms[index].transform.position + new Vector2(0, 0.5f),
+            Quaternion.identity).GetComponent<DadyController>();
 
         Platforms.RemoveAt(index);
+        GameManager.Instance.Player = c;
     }
 
     private void SpawnDeath()

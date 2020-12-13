@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void AttackTeath()
     {
-       // Player?.AttackTeath();
+        Player?.AttackTeath();
         UIManager.Instance.DeactivateTeathBt();
     }
 }
