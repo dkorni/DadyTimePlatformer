@@ -107,4 +107,14 @@ public class DadyController : MonoBehaviour
 
         transform.localScale = scale;
     }
+
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    _isGrounded = true;
+    //}
+
+    //private void OnCollisionStay2D(Collision2D col)
+    //{
+    //    _isGrounded = true;
+    //}
 }

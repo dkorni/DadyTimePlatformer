@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1819584132011852249}
   - component: {fileID: 1819584132011852247}
   - component: {fileID: 1819584132011852251}
-  - component: {fileID: 1819584132011852246}
   - component: {fileID: 4094192407570711101}
+  - component: {fileID: 1737215033585931860}
   m_Layer: 0
   m_Name: Dady_1
   m_TagString: Cleanup
@@ -125,22 +125,6 @@ MonoBehaviour:
   _checkGroundedRadius: 0.3
   _isGrounded: 0
   _isJumpPressed: 0
---- !u!58 &1819584132011852246
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819584132011852244}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!95 &4094192407570711101
 Animator:
   serializedVersion: 3
@@ -160,6 +144,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &1737215033585931860
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819584132011852244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.27, y: 10}
+  m_Direction: 0
 --- !u!1 &1819584133179258388
 GameObject:
   m_ObjectHideFlags: 0

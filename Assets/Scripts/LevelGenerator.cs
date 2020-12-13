@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
 
     public int MaxPlatforms = 7;
 
-    private int _counter;
+    private int _counter = 1;
 
     private const float MIN_POS_X = -6.25f;
     private const float MAX_POS_X = 6.25f;
@@ -17,9 +17,17 @@ public class LevelGenerator : MonoBehaviour
     private const float MIN_POS_Y = -4.46f;
     private const float MAX_POS_Y = 2.22f;
 
-    private const float MAX_X_OFFSET = 5.2f;
-
     private Platform _lstPlatform;
+
+    private Vector2 _yMinMaxMatrixCurrent;
+    private Vector2 _yMinMaxMatrix = new Vector2(MIN_POS_Y+0, MIN_POS_Y + 1.5f);
+
+    private Vector2[] yMinMax = new Vector2[]
+    {
+        new Vector2(MIN_POS_Y, MIN_POS_Y+3), 
+        new Vector2(MIN_POS_Y+3, MIN_POS_Y+9), 
+        new Vector2(MIN_POS_Y+9, MAX_POS_Y), 
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +39,13 @@ public class LevelGenerator : MonoBehaviour
 
     public void Generate()
     {
+        _yMinMaxMatrixCurrent = _yMinMaxMatrix;
+
         // spawn first platform
         var firstPlatformPosX = Random.Range(MIN_POS_X, MAX_POS_X);
-        var firstPlatformPosY = Random.Range(MIN_POS_Y, MAX_POS_Y);
+        var firstPlatformPosY = Random.Range(_yMinMaxMatrixCurrent.x, _yMinMaxMatrixCurrent.y);
+
+   
 
         var firstPlatformPos = new Vector2(firstPlatformPosX, firstPlatformPosY);
         var ptf = Instantiate(PlatformPrefab, firstPlatformPos, Quaternion.identity);
@@ -45,22 +57,45 @@ public class LevelGenerator : MonoBehaviour
 
         _lstPlatform = ptf.GetComponent<Platform>();
 
-        for (int i = 0; i < 1; i++)
+
+        _yMinMaxMatrixCurrent = new Vector2(_lstPlatform.transform.position.y+1, _lstPlatform.transform.position.y + 3f);
+
+        // для каждого под левала
+        for (int i = 0; i < 7; i++)
         {
-            var randomDirectionX = Random.Range(0, 1);
+            var randomDirectionX = Random.Range(0, 2);
 
-            GenerateRight();
+            if (randomDirectionX == 0)
+            {
+                // so first try to start right
+                if (GenerateRight(i))
+                {
+              
+                }
+                else
+                {
+                    // try from left
+                    GenerateRight(i);
+                }
+            }
 
-            //if (randomDirectionX == 0)
-            //{
-            //    GenerateRight();
-            //}
+            if (randomDirectionX == 1)
+            {
+                // try to start left
+                if (GenerateLeft(i))
+                {
 
-            //if (randomDirectionX == 1)
-            //{
-            //    GenerateLeft();
-            //}
+                }
+                else
+                {
+                    // try from right
+                    GenerateRight(i);
+                }
+            }
         }
+
+        if(_counter < 5)
+            RegenerateLevel();
     }
 
     public void RegenerateLevel()
@@ -71,6 +106,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void CleanUp()
     {
+        _counter = 0;
         var objs = GameObject.FindGameObjectsWithTag("Cleanup");
         foreach (var obj in objs)
         {
@@ -78,7 +114,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void GenerateRight()
+    private bool GenerateRight(int subLevelNum)
     {
         var hit = Physics2D.Raycast(_lstPlatform.RightChecker.position, _lstPlatform.RightChecker.right, 100000);
         Debug.DrawRay(_lstPlatform.RightChecker.position, _lstPlatform.RightChecker.right, Color.red, 3);
@@ -86,33 +122,75 @@ public class LevelGenerator : MonoBehaviour
 
         Debug.Log($"Hitted into {hit.transform.name} distance = {dist}");
 
-        if (dist > _lstPlatform.transform.position.x + 10.8f)
+        if (dist > _lstPlatform.transform.position.x + 8f)
         {
             var nextXPos = Random.Range(_lstPlatform.transform.position.x + 5.2f,
                 hit.point.x - 2.7f);
 
-            var nextPos = new Vector2(nextXPos, _lstPlatform.transform.position.y);
+            var minMaxY = new Vector2[]
+            {
+                new Vector2(_lstPlatform.transform.position.y, _lstPlatform.transform.position.y - 3), // down 
+                new Vector2(_lstPlatform.transform.position.y, _lstPlatform.transform.position.y + 3), // up 
+            };
+
+            var nextPosY = Random.Range(_yMinMaxMatrixCurrent.x, _yMinMaxMatrixCurrent.y);
+
+            _yMinMaxMatrixCurrent += new Vector2(2, 2);
+
+            var nextPos = new Vector2(nextXPos, nextPosY);
 
             var ptf = Instantiate(PlatformPrefab, nextPos, Quaternion.identity).GetComponent<Platform>();
+
+            // check availability and activate laders if need
+            ptf.ActivateLaders();
+
             _lstPlatform = ptf;
+
+
+            // check intersections
+            _yMinMaxMatrixCurrent = new Vector2(_lstPlatform.transform.position.y + 1.6f, _lstPlatform.transform.position.y + 3f);
+
+            _counter++;
+
+            return true;
         }
 
-        //if (dist < MAX_POS_X + 5.2f && dist > _lstPlatform.transform.position.x + 5.4f)
-        //{
-        //    var maxSpawnDist = Mathf.Max(0,hit.point.x - 10.4f); 
-
-        //    var nextXPos = Random.Range(_lstPlatform.transform.position.x + 2.7f,
-        //        maxSpawnDist);
-
-        //    var nextPos = new Vector2(nextXPos, _lstPlatform.transform.position.y);
-
-        //    var ptf = Instantiate(PlatformPrefab, nextPos, Quaternion.identity).GetComponent<Platform>();
-        //    _lstPlatform = ptf;
-        //}
+        return false;
     }
 
-    private void GenerateRight(Platform platform)
+    private bool GenerateLeft(int subLevelNum)
     {
+        var hit = Physics2D.Raycast(_lstPlatform.LeftChecker.position, _lstPlatform.LeftChecker.right * -1, 100000);
+        Debug.DrawRay(_lstPlatform.LeftChecker.position, _lstPlatform.LeftChecker.right*-1, Color.red, 3);
+        var dist = Vector2.Distance(_lstPlatform.transform.position, hit.point);
 
+        Debug.Log($"Hitted into {hit.transform.name} distance = {dist}");
+
+        if (dist > Mathf.Abs(_lstPlatform.transform.position.x - 8f))
+        {
+            var nextXPos = Random.Range(_lstPlatform.transform.position.x - 5.2f,
+                hit.point.x + 2.7f);
+
+            var nextPosY = Random.Range(_yMinMaxMatrixCurrent.x, _yMinMaxMatrixCurrent.y);
+
+            _yMinMaxMatrixCurrent += new Vector2(2, 2);
+
+            var nextPos = new Vector2(nextXPos, nextPosY);
+
+            var ptf = Instantiate(PlatformPrefab, nextPos, Quaternion.identity).GetComponent<Platform>();
+
+            // check availability and activate laders if need
+            ptf.ActivateLaders();
+
+            _lstPlatform = ptf;
+
+            _yMinMaxMatrixCurrent = new Vector2(_lstPlatform.transform.position.y + 1.6f, _lstPlatform.transform.position.y+ 3f);
+
+            _counter++;
+
+            return true;
+        }
+
+        return false;
     }
 }
