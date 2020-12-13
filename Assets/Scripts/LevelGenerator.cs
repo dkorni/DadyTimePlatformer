@@ -6,8 +6,12 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject PlatformPrefab;
     public GameObject PlayerPrefab;
+    public GameObject DeathPrefab;
+    public GameObject[] weapons;
 
     public int MaxPlatforms = 7;
+
+    public List<Platform> Platforms;
 
     private int _counter = 1;
 
@@ -33,7 +37,7 @@ public class LevelGenerator : MonoBehaviour
     void Start()
     {
        
-        Generate();
+           RegenerateLevel();
 
     }
 
@@ -49,11 +53,6 @@ public class LevelGenerator : MonoBehaviour
 
         var firstPlatformPos = new Vector2(firstPlatformPosX, firstPlatformPosY);
         var ptf = Instantiate(PlatformPrefab, firstPlatformPos, Quaternion.identity);
-
-        // todo
-        // spawn player on random platform
-        Instantiate(PlayerPrefab, (Vector2) ptf.transform.position + new Vector2(0, 1.5f),
-            Quaternion.identity);
 
         _lstPlatform = ptf.GetComponent<Platform>();
 
@@ -94,19 +93,59 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        if(_counter < 5)
-            RegenerateLevel();
+        SpawnPlayer();
+        SpawnDeath();
+        SpawnWeapon();
+    }
+
+    private void SpawnPlayer()
+    {
+        int index = Random.Range(0, Platforms.Count);
+
+        // spawn player on random platform
+        Instantiate(PlayerPrefab, (Vector2)Platforms[index].transform.position + new Vector2(0, 0.5f),
+            Quaternion.identity);
+
+        Platforms.RemoveAt(index);
+    }
+
+    private void SpawnDeath()
+    {
+        int index = Random.Range(0, Platforms.Count);
+
+        // spawn player on random platform
+        Instantiate(DeathPrefab, (Vector2)Platforms[index].transform.position + new Vector2(0, 1.5f),
+            Quaternion.identity);
+
+        Platforms.RemoveAt(index);
+    }
+
+    private void SpawnWeapon()
+    {
+        int index = Random.Range(0, Platforms.Count);
+        int indexW = Random.Range(0, weapons.Length);
+
+        // spawn player on random platform
+        Instantiate(weapons[indexW], (Vector2)Platforms[index].transform.position + new Vector2(0, 0.5f),
+            Quaternion.identity);
+
+        Platforms.RemoveAt(index);
     }
 
     public void RegenerateLevel()
     {
-        CleanUp();
-        Generate();
+        _counter = 0;
+        while (_counter < 5)
+        {
+            CleanUp();
+            Generate();
+        }
     }
 
     private void CleanUp()
     {
         _counter = 0;
+        Platforms.Clear();
         var objs = GameObject.FindGameObjectsWithTag("Cleanup");
         foreach (var obj in objs)
         {
@@ -144,6 +183,8 @@ public class LevelGenerator : MonoBehaviour
 
             // check availability and activate laders if need
             ptf.ActivateLaders();
+
+            Platforms.Add(ptf);
 
             _lstPlatform = ptf;
 
@@ -183,6 +224,8 @@ public class LevelGenerator : MonoBehaviour
 
             // check availability and activate laders if need
             ptf.ActivateLaders();
+
+            Platforms.Add(ptf);
 
             _lstPlatform = ptf;
 

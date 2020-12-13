@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class DadyController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
 
+    [SerializeField] private float Health = 100;
     [SerializeField] private Transform point;
     [SerializeField] private float _checkGroundedRadius = .3f;
     [SerializeField] private bool _isGrounded;
@@ -23,6 +25,7 @@ public class DadyController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         InputController.Instance.OnJump += Jump;
+        UIManager.Instance.UpdateHealthText(Math.Max(0, Health));
     }
 
     void Update()
@@ -107,6 +110,17 @@ public class DadyController : MonoBehaviour
         scale.x *= -1;
 
         transform.localScale = scale;
+    }
+
+    public void SetDamage(float damage)
+    {
+        Health -= damage;
+        UIManager.Instance.UpdateHealthText(Math.Max(0, Health));
+        if (Health <= 0)
+        {
+            UIManager.Instance.ShowDeathPanel();
+            enabled = false;
+        }
     }
 
     //private void OnCollisionEnter2D(Collision2D col)

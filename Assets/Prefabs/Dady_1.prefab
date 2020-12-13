@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  JumpSpeed: 7
+  JumpSpeed: 8
   LaderSpeed: 2
   point: {fileID: 1819584133179258391}
   _checkGroundedRadius: 0.3
