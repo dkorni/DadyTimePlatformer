@@ -20,5 +20,5 @@ which now opens access to portals.
 **Gameplay:** The hero hits monsters on the level with a stick (melee), false jaws (ranged - throws like a boomerang), 
 finds materials for improvements on the level, skips to the next. level. The game has level generation.
 
-![alt text](https://i.ibb.co/J5ky4yK/2023-03-07-171809.png)
+![alt text](https://i.imgur.com/3kBJphR.png)
 ![alt text](https://i.ibb.co/9njP9Cv/2023-03-07-171948.png)
